@@ -1,0 +1,21 @@
+name: twinlitenetplus_medium
+version: default
+encoder:
+  in_channels: 3
+  level_0_ch: 16
+  level_1_ch: 32
+  level_2_ch: 64
+  level_3_ch: 128
+  level_4_ch: 256
+  out_channels: 64
+  p: 3
+  q: 5
+caam:
+  in_channels: 64
+  num_classes: 64
+  out_channels: 32
+decoder:
+  in_channels: 32
+  level_0_ch: 16
+  level_1_ch: 8
+  out_channels: 4

@@ -1,0 +1,9 @@
+# @package _global_
+defaults:
+  - override /augmentations: tlnp_default_aidadataset
+  - override /dataset: aidadataset
+  - override /routine: finetuning
+  - _self_
+
+routine:
+  model_weights: './model_checkpoints/default_train/model_53.pth'

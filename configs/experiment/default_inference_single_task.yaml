@@ -1,0 +1,12 @@
+# @package _global_
+defaults:
+  - override /dataset: custom_source
+  - override /model: singlelitenetplus/large
+  - override /routine: inference
+  - _self_
+
+savedir: ./inference/output
+
+# Overwrite the dataset path (and potentially the img_size)
+dataset:
+  images_folder: path/to/source

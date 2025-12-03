@@ -1,0 +1,5 @@
+# Logging
+dataset_name: DefaultDataset
+verbose: true
+wandb: true
+exp_name: DefaultExperiment

@@ -1,0 +1,20 @@
+# @package _global_
+defaults:
+  - override /dataset: custom_source
+  - override /model: singlelitenetplus/large
+  - override /routine: inference
+  - _self_
+
+savedir: ./inference/slnp_dac_daa_lls_lld_curb_bdd100kval
+
+dataset:
+  images_folder: /path/to/imgs # e.g., /home/paolopertino/Datasets/BDD100k/images_1280x720/val
+  num_workers: 1
+  batch_size: 1
+  img_resize: 640
+model:
+  decoder:
+    out_channels: 6
+
+routine:
+  model_weights: /path/to/ckpt # e.g., /home/paolopertino/Desktop/SingleLiteNetPlus/demo_checkpoints/slnp_train_alternative_dashed_curb_default_cfg/slnp_BDDpretrain_dac_daa_lls_lld_curb.pth

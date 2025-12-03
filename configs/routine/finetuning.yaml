@@ -1,0 +1,14 @@
+max_epochs: 100
+mixed_precision_training: true
+model_weights: './model_checkpoints/model_99.pth'
+ft_schedule: # Unfreeze block @ epoch
+  '': 0
+  # out_ll: 0
+  # up_2_ll: 20
+  # up_1_ll: 40
+  # out_da: 40
+  # up_1_da: 40
+  # up_2_da: 40
+  # encoder: 40
+early_stopping_patience: 10
+lr: 0.0001

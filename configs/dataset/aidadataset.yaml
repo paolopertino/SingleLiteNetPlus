@@ -1,0 +1,53 @@
+# Data parameters
+images_folder: /path/to/AIDACAMERA/images
+annotations_folder: /path/to/AIDACAMERA/masks
+num_workers: 4
+batch_size: 16
+
+# idx2class defines how the annotations are mapped to class names
+# class2remapped_idx defines how the classes are managed by the dataloader.
+# This means that if you want to merge the classes together, the remapping
+# should be adjusted accordingly.
+# E.g., if you want to consider only drivable areas and lane lines, you could
+# modify the remapping as follows:
+# idx_remapping:
+#   twin:
+#     0: 0
+#     da:
+#       1: 1
+#       2: 1
+#     ll:
+#       3: 1
+#       4: 1
+#       5: 1
+#   single:
+#     0: 0
+#     1: 1
+#     2: 1
+#     3: 2
+#     4: 2
+#     5: 2
+idx2class:
+  0: background
+  1: da_current
+  2: da_alternative
+  3: ll_solid
+  4: ll_dashed
+  5: curb
+
+class2idx:
+  background: 0
+  da_current: 1
+  da_alternative: 2
+  ll_solid: 3
+  ll_dashed: 4
+  curb: 5
+
+idx_remapping:
+  single:
+    0: 0
+    1: 1
+    2: 2
+    3: 3
+    4: 4
+    5: 5

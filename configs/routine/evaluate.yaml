@@ -1,0 +1,2 @@
+model_weights: './model_checkpoints/default_train/model_53.pth'
+mixed_precision_inference: true

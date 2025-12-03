@@ -1,0 +1,10 @@
+alpha1: 0.7 #seg_tver_da 
+gamma1: 1.33333333333 #seg_tver_da 
+alpha2: 0.9 #seg_tver_ll
+gamma2: 1.33333333333 #seg_tver_ll
+alpha3: 0.25 #seg_focal alpha
+gamma3: 2.0 #seg_focal gamma
+weight_focal: 1.
+weight_tversky: 1.
+weight_total_variation: 0.
+weight_boundary: 0.

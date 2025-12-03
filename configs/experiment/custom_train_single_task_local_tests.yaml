@@ -1,0 +1,21 @@
+# @package _global_
+defaults:
+  - override /logging: wandb_off
+  - override /model: singlelitenetplus/large
+  - _self_
+
+dataset:
+  images_folder: path/to/dataset # e.g., /home/paolopertino/Datasets/BDD100k/images_1280x720
+  annotations_folder: path/to/annotations # e.g., /home/paolopertino/Datasets/BDD100k/bdd100k_labels_dac_daa_lls_lld_curbs
+  num_workers: 1
+  batch_size: 4
+model:
+  decoder:
+    out_channels: 6
+
+routine:
+  mixed_precision_training: true
+
+logging:
+  dataset_name: BDD100K
+  exp_name: BDD100k_pretrain_local_tests

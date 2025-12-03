@@ -1,0 +1,5 @@
+max_epochs: 100
+mixed_precision_training: true
+early_stopping_patience: 10
+resume: ''
+lr: 0.0005

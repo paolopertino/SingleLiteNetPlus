@@ -1,0 +1,20 @@
+degrees: 10 #Rotation
+translate: 0.1 #Translate
+scale: 0.5 #Scale
+shear: 0.0 #Shear
+hgain: 0.015 #Hgain
+sgain: 0.7 #Sgain  
+vgain: 0.4 #Vgain
+width_crop: 384 #Width for RandomCrop  | 0.75 * original_width
+height_crop: 96 #Height for RandomCrop | 0.75 * original_height
+resize_largest_side: 512 # Resize the largest size (in our case the width) to this dim and randomly pad the other
+start_lidar_crop: 256
+end_lidar_crop: 768
+
+prob_perspective: 0.5
+prob_hsv: 0.5
+prob_flip: 0.5
+prob_bilateral: 0.1
+prob_gaussian: 0.1
+prob_crop: 0.1
+prob_downscale: 0. # By Default, the image is not downscaled.

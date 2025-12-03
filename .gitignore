@@ -1,0 +1,82 @@
+*.pth
+*.tar
+*.png
+*.jpg
+*.pyc
+*.mp4
+__pycache__/
+reports/
+wandb/
+
+# Ignore inference results
+inference_results/
+
+# Ignore pretrained models
+pretrained/
+
+# Ignore model checkpoints
+model_checkpoints/
+
+# Ignore dataset
+dataset/*
+
+# Ignore Hydra logs
+hydra_logs/*
+
+# Keeping only Hydra template configurations
+# Ignore everything under configs/
+configs/**
+
+# Keep subdirectories (so exceptions inside work)
+!configs/**/
+
+# Explicitly keep the files you already have
+!configs/config.yaml
+!configs/__init__.py
+
+# augmentation
+!configs/augmentation/tlnp_default_aidadataset_lidar.yaml
+!configs/augmentation/tlnp_default_aidadataset.yaml
+!configs/augmentation/tlnp_default_bdd100k.yaml
+
+# dataset
+!configs/dataset/aidadataset_lidar.yaml
+!configs/dataset/aidadataset.yaml
+!configs/dataset/bdd100k.yaml
+!configs/dataset/custom_source.yaml
+
+# experiment
+!configs/experiment/default_finetuning_lidar.yaml
+!configs/experiment/default_finetuning.yaml
+!configs/experiment/default_inference_lidar.yaml
+!configs/experiment/default_inference_single_task_lidar.yaml
+!configs/experiment/default_inference_single_task.yaml
+!configs/experiment/default_inference.yaml
+!configs/experiment/default_train_single_task.yaml
+!configs/experiment/default_train.yaml
+!configs/experiment/custom_train_single_task_local_tests.yaml
+!configs/experiment/custom_inference_single_task_dac_daa_lls_lld_curb.yaml
+!configs/experiment/custom_eval_single_curr_alt_solid_dash_curb.yaml
+
+# logging
+!configs/logging/wandb_off.yaml
+!configs/logging/wandb_on.yaml
+
+# loss
+!configs/loss/focal_tversky.yaml
+
+# model/singlelitenetplus
+!configs/model/singlelitenetplus/extra_large.yaml
+!configs/model/singlelitenetplus/large.yaml
+!configs/model/singlelitenetplus/medium.yaml
+!configs/model/singlelitenetplus/nano.yaml
+!configs/model/singlelitenetplus/small.yaml
+
+# optimizer
+!configs/optimizer/adamw.yaml
+
+# routine
+!configs/routine/evaluate.yaml
+!configs/routine/finetuning.yaml
+!configs/routine/inference.yaml
+!configs/routine/training.yaml

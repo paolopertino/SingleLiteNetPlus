@@ -1,0 +1,3 @@
+weight_decay: 0.0005  # Adamw optimizer term for weight decay 
+momentum: 0.9  # AdamW optimizer term for beta1
+eps: 0.00000001 # AdamW optimizer term for epsilon

@@ -1,0 +1,21 @@
+# @package _global_
+defaults:
+  - override /dataset: custom_source
+  - override /model: singlelitenetplus/large
+  - override /routine: inference
+  - _self_
+
+savedir: ./inference/output
+
+# Specifies paths to the LiDAR images and how to stack them
+# during inference. If you want to run inference on the single
+# LiDAR image, you can use the default_inference config
+# passing as source directly the directory of the images
+# you want to use, or use the lidar script using the same name 
+# lidar image.
+dataset:
+  images_folder: path/to/source
+  lidar_img1: NIR
+  lidar_img2: SIGNAL
+  lidar_img3: REFLEC
+  filename_filter: null

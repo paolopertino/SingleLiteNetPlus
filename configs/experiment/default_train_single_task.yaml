@@ -1,0 +1,4 @@
+# @package _global_
+defaults:
+  - override /model: singlelitenetplus/large
+  - _self_

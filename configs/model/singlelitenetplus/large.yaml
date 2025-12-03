@@ -1,0 +1,21 @@
+name: singlelitenetplus_large
+version: default
+encoder:
+  in_channels: 3
+  level_0_ch: 32
+  level_1_ch: 64
+  level_2_ch: 128
+  level_3_ch: 256
+  level_4_ch: 512
+  out_channels: 128
+  p: 5
+  q: 7
+caam:
+  in_channels: 128
+  num_classes: 128
+  out_channels: 64
+decoder:
+  in_channels: 64
+  level_0_ch: 32
+  level_1_ch: 8
+  out_channels: 4

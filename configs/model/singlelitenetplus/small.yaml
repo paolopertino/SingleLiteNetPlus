@@ -1,0 +1,21 @@
+name: twinlitenetplus_small
+version: default
+encoder:
+  in_channels: 3
+  level_0_ch: 8
+  level_1_ch: 16
+  level_2_ch: 32
+  level_3_ch: 64
+  level_4_ch: 128
+  out_channels: 32
+  p: 2
+  q: 3
+caam:
+  in_channels: 32
+  num_classes: 32
+  out_channels: 16
+decoder:
+  in_channels: 16
+  level_0_ch: 8
+  level_1_ch: 8
+  out_channels: 4
