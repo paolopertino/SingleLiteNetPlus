@@ -1,0 +1,19 @@
+# build output
+dist/
+build/
+public/
+.vite/
+__pycache__/
+
+# system files
+.DS_Store
+Thumbs.db
+
+# dependencies
+node_modules/
+
+*pb2*.py
+
+# auto generated
+envoy.tmp.yaml
+package-lock.json
