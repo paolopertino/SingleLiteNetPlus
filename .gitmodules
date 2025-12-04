@@ -1,0 +1,6 @@
+[submodule "weightslab"]
+	path = weightslab
+	url = https://github.com/GrayboxTech/weightslab.git
+[submodule "weights_studio"]
+	path = weights_studio
+	url = https://github.com/GrayboxTech/weights_studio.git
