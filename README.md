@@ -14,6 +14,11 @@ To install the python dependencies, we recommend to do so using a virtual enviro
     uv sync
     source .venv/bin/activate
     ```
+
+    Finally, install the `weightslab` dependencies:
+    ```bash
+    uv pip install weightslab/
+    ```
 2. Using `pip`:
    
    Create a virtual environment first and activate it:
@@ -27,6 +32,11 @@ To install the python dependencies, we recommend to do so using a virtual enviro
     pip install .
    ```
 
+   Finally, install the `weightslab` dependencies:
+    ```bash
+    pip install -e weightslab/
+    ```
+
 ## :book: Datasets
 The main, large-scale, dataset of reference is `BDD100k`.
 
@@ -35,22 +45,22 @@ The folder structure is the following:
 .BDD100K
 ├── images_folder
 │   ├──train
-│   │   ├── img_1.png
+│   │   ├── img_1.jpg
 │   │   ├── ... 
-│   │   └── img_n.png
+│   │   └── img_n.jpg
 │   └──val
-│       ├── img_1.png
+│       ├── img_1.jpg
 │       ├── ... 
-│       └── img_n.png
+│       └── img_n.jpg
 └── annotations_folder
     ├──train
-    │   ├── mask_1.png
+    │   ├── img_1.png
     │   ├── ... 
-    │   └── mask_n.png
+    │   └── img_n.png
     └──val
-        ├── mask_1.png
+        ├── img_1.png
         ├── ... 
-        └── mask_n.png
+        └── img_n.png
 ```
 where `images_folder` and `annotations_folder` could be any path to your data given the specified structure.
 
