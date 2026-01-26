@@ -1,9 +1,9 @@
 import torch.nn as nn
 
-from model.caam import CAAM
-from model.common import ConvBatchnormRelu
-from model.decoder import UpConvBlock
-from model.encoder.Encoder import Encoder
+from .caam import CAAM
+from .common import ConvBatchnormRelu
+from .decoder import UpConvBlock
+from .encoder.Encoder import Encoder
 
 
 class SingleLiteNetPlus(nn.Module):
