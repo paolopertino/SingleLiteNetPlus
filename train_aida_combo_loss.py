@@ -48,12 +48,12 @@ class PatchedSingleLiteNetPlus(SingleLiteNetPlus):
         self.seen_samples = 0
         self.caam = CAAM(
             feat_in=caam.in_channels,
-            num_classes=6, 
-            bin_size=(2, 3), 
+            num_classes=128,
+            bin_size=(2, 4),
             norm_layer=nn.BatchNorm2d
         )
-        self.caam.gcn = GCN(num_node=6, num_channel=caam.in_channels)
-        self.caam.fuse = nn.Conv2d(6, 1, kernel_size=1)
+        self.caam.gcn = GCN(num_node=8, num_channel=caam.in_channels)
+        self.caam.fuse = nn.Conv2d(8, 1, kernel_size=1)
         self.conv_caam = ConvBatchnormRelu(caam.in_channels, caam.out_channels)
 
     def get_age(self):
@@ -215,7 +215,7 @@ def test(loader, model, criterion_mlt, metric_mlt, device, max_batches=20):
     return float(losses / max_batches), float(metric_mlt.compute().item() * 100.0)
 
 if __name__ == "__main__":
-    config_path = os.path.join(os.path.dirname(__file__), "aida_config.yaml")
+    config_path = os.path.join(os.path.dirname(__file__), "aida_config_large.yaml")
     with open(config_path, "r") as fh: parameters = yaml.safe_load(fh) or {}
 
     # Defaults
