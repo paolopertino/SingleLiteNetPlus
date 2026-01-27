@@ -80,3 +80,5 @@ configs/**
 !configs/routine/finetuning.yaml
 !configs/routine/inference.yaml
 !configs/routine/training.yaml
+
+.vscode/
