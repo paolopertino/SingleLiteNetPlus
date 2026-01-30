@@ -259,17 +259,34 @@ if __name__ == "__main__":
     os.makedirs(log_dir, exist_ok=True)
 
     # 4. REGISTRATION
+    params_registration_time_init = time.time()
     wl.watch_or_edit(Logger(), flag="logger", name=exp_name, log_dir=log_dir)
     wl.watch_or_edit(parameters, flag="hyperparameters", name="main", defaults=parameters)
     wl.watch_or_edit(parameters, flag="hyperparameters", name=None, defaults=parameters)
+    params_registration_time_end = time.time()
+    print(f"Parameters registered in {params_registration_time_end - params_registration_time_init:.2f} seconds.")
 
     # 5. DATA
     data_root = parameters.get("data_root")
+    train_ds_instance_time = time.time()
     train_ds = BDD100kSegDataset(data_root, split="train", image_size=image_size)
-    val_ds = BDD100kSegDataset(data_root, split="val", image_size=image_size)
+    train_ds_instance_end = time.time()
+    print(f"Train Dataset instance created in {train_ds_instance_end - train_ds_instance_time:.2f} seconds.")
 
+    val_ds_instance_time = time.time()
+    val_ds = BDD100kSegDataset(data_root, split="val", image_size=image_size)
+    val_ds_instance_end = time.time()
+    print(f"Validation Dataset instance created in {val_ds_instance_end - val_ds_instance_time:.2f} seconds.")
+
+    train_loader_watch_init_time = time.time()
     train_loader = wl.watch_or_edit(train_ds, flag="data", name="train_loader", batch_size=batch_size, num_workers=num_workers, is_training=True)
+    train_loader_watch_end_time = time.time()
+    print(f"Train DataLoader registered in {train_loader_watch_end_time - train_loader_watch_init_time:.2f} seconds.")
+
+    test_loader_watch_init_time = time.time()
     test_loader = wl.watch_or_edit(val_ds, flag="data", name="test_loader", batch_size=batch_size, num_workers=num_workers)
+    test_loader_watch_end_time = time.time()
+    print(f"Test DataLoader registered in {test_loader_watch_end_time - test_loader_watch_init_time:.2f} seconds.")
 
     # 6. MODEL (Loaded from Config)
     m_cfg = parameters.get("model", {})

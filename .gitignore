@@ -82,3 +82,4 @@ configs/**
 !configs/routine/training.yaml
 
 .vscode/
+weightslab_logs/
