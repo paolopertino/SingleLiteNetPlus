@@ -279,12 +279,12 @@ if __name__ == "__main__":
     print(f"Validation Dataset instance created in {val_ds_instance_end - val_ds_instance_time:.2f} seconds.")
 
     train_loader_watch_init_time = time.time()
-    train_loader = wl.watch_or_edit(train_ds, flag="data", name="train_loader", batch_size=batch_size, num_workers=num_workers, is_training=True)
+    train_loader = wl.watch_or_edit(train_ds, flag="data", name="train_loader", batch_size=batch_size, num_workers=num_workers, is_training=True, preload_labels=False)
     train_loader_watch_end_time = time.time()
     print(f"Train DataLoader registered in {train_loader_watch_end_time - train_loader_watch_init_time:.2f} seconds.")
 
     test_loader_watch_init_time = time.time()
-    test_loader = wl.watch_or_edit(val_ds, flag="data", name="test_loader", batch_size=batch_size, num_workers=num_workers)
+    test_loader = wl.watch_or_edit(val_ds, flag="data", name="test_loader", batch_size=batch_size, num_workers=num_workers, preload_labels=False)
     test_loader_watch_end_time = time.time()
     print(f"Test DataLoader registered in {test_loader_watch_end_time - test_loader_watch_init_time:.2f} seconds.")
 
