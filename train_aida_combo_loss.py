@@ -12,16 +12,16 @@ import numpy as np
 from types import SimpleNamespace
 from PIL import Image
 
-import weightslab as wl
+import weightslab.weightslab as wl
 from torchvision import transforms
 from torchmetrics import JaccardIndex
 from torch.utils.data import Dataset, DataLoader
 
-from weightslab.utils.board import Dash as Logger
-from weightslab.components.global_monitoring import (
-    guard_training_context,
+from weightslab.weightslab.utils.logger import LoggerQueue as Logger
+from weightslab.weightslab.components.global_monitoring import (
     guard_testing_context,
-    pause_controller,
+    guard_training_context,
+    pause_controller
 )
 
 from model import SingleLiteNetPlus
@@ -33,7 +33,7 @@ from model.common.ConvBatchnormRelu import ConvBatchnormRelu
 from model.losses.FocalLoss import FocalLossSeg
 from model.losses.TverskyLoss import TverskyLoss
 
-from weightslab.backend.ledgers import get_logger, get_model
+from weightslab.weightslab.backend.ledgers import get_logger, get_model
 
 # 1. SETUP LOGGING & PATHS
 logging.basicConfig(level=logging.ERROR)
@@ -215,7 +215,7 @@ def test(loader, model, criterion_mlt, metric_mlt, device, max_batches=20):
     return float(losses / max_batches), float(metric_mlt.compute().item() * 100.0)
 
 if __name__ == "__main__":
-    config_path = os.path.join(os.path.dirname(__file__), "aida_config_large.yaml")
+    config_path = os.path.join(os.path.dirname(__file__), "aida_config_medium.yaml")
     with open(config_path, "r") as fh: parameters = yaml.safe_load(fh) or {}
 
     # Defaults
@@ -279,12 +279,35 @@ if __name__ == "__main__":
     print(f"Validation Dataset instance created in {val_ds_instance_end - val_ds_instance_time:.2f} seconds.")
 
     train_loader_watch_init_time = time.time()
-    train_loader = wl.watch_or_edit(train_ds, flag="data", name="train_loader", batch_size=batch_size, num_workers=num_workers, is_training=True, preload_labels=False)
+    train_loader = wl.watch_or_edit(
+        train_ds,
+        flag="data",
+        name="train_loader",
+        batch_size=batch_size,
+        num_workers=num_workers,
+        is_training=True,
+        preload_labels=False,
+        # compute_hash=False,
+        # array_autoload_arrays=False,
+        # array_return_proxies=True,
+        # array_use_cache=True,
+    )
     train_loader_watch_end_time = time.time()
     print(f"Train DataLoader registered in {train_loader_watch_end_time - train_loader_watch_init_time:.2f} seconds.")
 
     test_loader_watch_init_time = time.time()
-    test_loader = wl.watch_or_edit(val_ds, flag="data", name="test_loader", batch_size=batch_size, num_workers=num_workers, preload_labels=False)
+    test_loader = wl.watch_or_edit(
+        val_ds,
+        flag="data",
+        name="test_loader",
+        batch_size=batch_size,
+        num_workers=num_workers,
+        preload_labels=False,
+        # compute_hash=False,
+        # array_autoload_arrays=False,
+        # array_return_proxies=True,
+        # array_use_cache=True,
+    )
     test_loader_watch_end_time = time.time()
     print(f"Test DataLoader registered in {test_loader_watch_end_time - test_loader_watch_init_time:.2f} seconds.")
 
@@ -318,9 +341,10 @@ if __name__ == "__main__":
     )
     
     model_raw = PatchedSingleLiteNetPlus(enc_h, caam_h, dec_h).to(device)
+    # model_raw.load_state_dict(torch.load("/home/paolopertino/Desktop/SingleLiteNetPlus/model_checkpoints/model_45.pth"))
 
-    from weightslab.backend.ledgers import register_model
-    register_model(exp_name, model_raw)
+    from weightslab.weightslab.backend.ledgers import register_model
+    register_model(name=exp_name, model=model_raw)
     guard_training_context.model = model_raw
     guard_testing_context.model = model_raw
 
